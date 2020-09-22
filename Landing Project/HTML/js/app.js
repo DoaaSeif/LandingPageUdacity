@@ -59,10 +59,8 @@ function buildNav(list) {
 
 // Add class 'active' to section when near top of viewport
 
-function setActive(navSections) {
-
-  let checkViewport = function(element) {
-    let bounding = element.getBoundingClientRect();
+function checkViewport(element) {
+  	let bounding = element.getBoundingClientRect();
     return (
 			bounding.top >= 0 &&
 			bounding.left >= 0 && 
@@ -71,12 +69,14 @@ function setActive(navSections) {
     );
   };
 
- 	for (i = 0; i <= navSections.length + 1; i++) {
-	    let sectionNew = document.getElementById("section" + i);
-	    let linksNew = document.getElementsByTagName("a");
-	    let linksNewNew = linksNew[i-1];
+function setActive(navSections) {
 
-	    document.addEventListener("scroll", function(event) {
+ 	for (i = 0; i < navSections.length; i++) {
+	    let sectionNew = document.getElementById("section" + (i+1));
+	    let linksNew = document.getElementsByTagName("a");
+	    let linksNewNew = linksNew[i];
+
+	    window.addEventListener("scroll", function(event) {
 	        if (checkViewport(sectionNew)) {
 	          sectionNew.classList.add("your-active-class");
 	          linksNewNew.classList.add("active");
